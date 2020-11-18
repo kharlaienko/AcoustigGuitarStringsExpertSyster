@@ -5,8 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AcousticGuitarStrings"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="550" Width="650" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Icon="Images/icon.ico">
+
+    <Window.Resources>
+        <Style x:Key="ToolBar" TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="#FF5F9FE8"/>
+        </Style>
+
+        <Style x:Key="ToolBarBorder" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1.5"/>
+            <Setter Property="BorderBrush" Value="#FF551D1D"/>
+        </Style>
+
+        <Style x:Key="CloseImage" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Images/CrossButton.png"/>
+            <Setter Property="Height" Value="20"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=ButtonClose, Path=IsMouseOver}" Value="True">
+                    <Setter Property="Source" Value="Images/CrossButtonHover.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MinimazeImage" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Images/MinimazeButton.png"/>
+            <Setter Property="Height" Value="3"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=ButtonMinimaze, Path=IsMouseOver}" Value="True">
+                    <Setter Property="Source" Value="Images/MinimazeButtonHover.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ToolBarButton" TargetType="{x:Type Grid}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Margin" Value="5 0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF8DC1FD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         
-    </Grid>
+        
+    </Window.Resources>
+    
+    <Border BorderBrush="#FF0F0D0D" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="530*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid x:Name="ToolBar" Grid.Row="0" Style="{StaticResource ToolBar}" MouseDown="ToolBar_MouseDown">
+                <Border x:Name="ToolBarBorder" Style="{StaticResource ToolBarBorder}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Grid x:Name="ButtonMinimaze" Style="{StaticResource ToolBarButton}" MouseDown="ButtonMinimaze_MouseDown" >
+                            <Image x:Name="MinimazeImage" Style="{StaticResource MinimazeImage}"/>
+                        </Grid>
+
+                        <Grid x:Name="ButtonClose" Style="{StaticResource ToolBarButton}" MouseDown="ButtonClose_MouseDown" >
+                            <Image x:Name="CloseImage" Style="{StaticResource CloseImage}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                
+            </Grid>
+            
+        </Grid>
+    </Border>
 </Window>

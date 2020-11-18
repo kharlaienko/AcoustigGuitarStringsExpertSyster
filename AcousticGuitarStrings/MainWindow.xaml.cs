@@ -24,5 +24,23 @@ namespace AcousticGuitarStrings
         {
             InitializeComponent();
         }
+
+        private void ToolBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void ButtonClose_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ButtonMinimaze_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }

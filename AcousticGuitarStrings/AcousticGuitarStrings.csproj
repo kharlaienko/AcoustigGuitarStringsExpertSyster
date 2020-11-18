@@ -94,5 +94,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CrossButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CrossButtonHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MinimazeButton.png" />
+    <Resource Include="Images\MinimazeButtonHover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
