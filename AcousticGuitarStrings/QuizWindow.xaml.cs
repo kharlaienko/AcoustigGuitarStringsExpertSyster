@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AcousticGuitarStrings
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для QuizWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class QuizWindow : Window
     {
-        public MainWindow()
+        public QuizWindow()
         {
             InitializeComponent();
         }
@@ -41,14 +40,6 @@ namespace AcousticGuitarStrings
         private void ButtonMinimaze_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }
-
-        private void StartButton_Click(object sender, RoutedEventArgs e)
-        {
-            QuizWindow quizWindow = new QuizWindow();
-            quizWindow.Show();
-
-            this.Close();
         }
     }
 }
