@@ -52,10 +52,15 @@
         <Style x:Key="QuizBorder" TargetType="{x:Type Border}">
             <Setter Property="Height" Value="400"/>
             <Setter Property="Width" Value="500"/>
-            <Setter Property="Margin" Value="0 0 20 0"/>
             <Setter Property="BorderBrush" Value="#000"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Background" Value="#FFABCFFF"/>
+        </Style>
+
+        <Style x:Key="QuizGrid" TargetType="{x:Type Grid}">
+            <Setter Property="Height" Value="400"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="Margin" Value="0 0 20 0"/>
         </Style>
 
         <Style x:Key="Logo" TargetType="{x:Type Image}">
@@ -132,6 +137,25 @@
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
 
+        <Style x:Key="Question" TargetType="{x:Type TextBlock}">
+            <Setter Property="Text" Value="Яке звучання ви би хотіли мати?"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="QuestionBorder" TargetType="{x:Type Border}">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="Height" Value="{Binding ElementName=Question, Path=Height}"/>
+        </Style>
+
 
     </Window.Resources>
 
@@ -160,11 +184,16 @@
                 <Grid x:Name="LogoGrid" Style="{StaticResource LogoGrid}">
                     <Image x:Name="Logo" Style="{StaticResource Logo}"/>
                 </Grid>
-                <Border x:Name="QuizBorder" Style="{StaticResource QuizBorder}">
-                    <Grid>
-                        
-                    </Grid>
-                </Border>
+
+                <Grid x:Name="QuizGrid" Style="{StaticResource QuizGrid}">
+                    <Border x:Name="QuizBorder" Style="{StaticResource QuizBorder}"/>
+
+                    <Border x:Name="QuestionBorder" Style="{StaticResource QuestionBorder}">
+                        <TextBlock x:Name="Question" Style="{StaticResource Question}"/>
+                    </Border>
+
+                </Grid>
+                
                 <Border x:Name="ProgressBarBorder" Style="{StaticResource ProgressBarBorder}"> 
                     <ProgressBar x:Name="ProgressBar" Style="{StaticResource ProgressBar}"/>
                 </Border>
