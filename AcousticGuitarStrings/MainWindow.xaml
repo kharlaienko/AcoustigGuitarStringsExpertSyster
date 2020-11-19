@@ -15,7 +15,7 @@
         <Style x:Key="ToolBarBorder" TargetType="{x:Type Border}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0 0 0 1.5"/>
-            <Setter Property="BorderBrush" Value="#FF551D1D"/>
+            <Setter Property="BorderBrush" Value="#000"/>
         </Style>
 
         <Style x:Key="CloseImage" TargetType="{x:Type Image}">
@@ -48,6 +48,78 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="InformationBorder" TargetType="{x:Type Border}">
+            <Setter Property="Height" Value="400"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#FFABCFFF"/>
+        </Style>
+        
+        <Style x:Key="Logo" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Images/logo.png"/>
+        </Style>
+
+        <Style x:Key="LogoGrid" TargetType="{x:Type Grid}">
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="15 -20 0 0"/>
+        </Style>
+
+        <Style x:Key="InformationText" TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Margin" Value="20 0 20 70"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Text" Value="Дана експертна система допоможе вибрати відповідні струни для акустичної гітари"/>
+        </Style>
+
+        <Style x:Key="StartButton" TargetType="{x:Type Button}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 0 20"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="Background" Value="#682E2E"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Content" Value="Розпочати тестування"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder" BorderBrush="{TemplateBinding Property=BorderBrush}"
+                                BorderThickness="{TemplateBinding Property=BorderThickness}"
+                                CornerRadius="20" Background="{TemplateBinding Background}">
+                            <TextBlock Text="{TemplateBinding Property=Content}" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" Foreground="#CDDEF5" FontSize="{TemplateBinding FontSize}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Width" Value="178"/>
+                                <Setter Property="Height" Value="42"/>
+                                <Setter Property="Margin" Value="1 1 1 19"/>
+                            </Trigger>
+                            
+                            <DataTrigger Binding="{Binding ElementName=ButtonBorder, Path=IsMouseOver}" Value="True">
+                                <Setter Property="FontSize" Value="15"/>
+                            </DataTrigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF4D1F1F"/>
+                                <Setter Property="BorderThickness" Value="3.5 3.5 3.5 3.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
         
     </Window.Resources>
@@ -73,8 +145,16 @@
                 </Border>
             </Grid>
 
-            <Grid Grid.Row="1">
-                
+            <Grid Grid.Row="1" Background="#FF5F9FE8">
+                <Grid x:Name="LogoGrid" Style="{StaticResource LogoGrid}">
+                    <Image x:Name="Logo" Style="{StaticResource Logo}"/>
+                </Grid>
+                <Border x:Name="InformationBorder" Style="{StaticResource InformationBorder}">
+                    <Grid>
+                        <TextBlock x:Name="InformationText" Style="{StaticResource InformationText}"/>
+                        <Button x:Name="StartButton" Style="{StaticResource StartButton}"/>
+                    </Grid>
+                </Border>
             </Grid>
             
         </Grid>
