@@ -42,6 +42,7 @@
             <Setter Property="Height" Value="30"/>
             <Setter Property="Width" Value="30"/>
             <Setter Property="Margin" Value="5 0"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#FF8DC1FD"/>
@@ -50,15 +51,14 @@
         </Style>
 
         <Style x:Key="QuizBorder" TargetType="{x:Type Border}">
-            <Setter Property="Height" Value="400"/>
-            <Setter Property="Width" Value="500"/>
             <Setter Property="BorderBrush" Value="#000"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" Value="#FFABCFFF"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
 
         <Style x:Key="QuizGrid" TargetType="{x:Type Grid}">
-            <Setter Property="Height" Value="400"/>
+            <Setter Property="Background" Value="#FFABCFFF"/>
+            <Setter Property="Height" Value="430"/>
             <Setter Property="Width" Value="500"/>
             <Setter Property="Margin" Value="0 0 20 0"/>
         </Style>
@@ -72,21 +72,21 @@
             <Setter Property="Width" Value="70"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Margin" Value="15 -20 0 0"/>
+            <Setter Property="Margin" Value="15 -30 0 0"/>
         </Style>
 
-        <Style x:Key="StartButton" TargetType="{x:Type Button}">
+        <Style x:Key="NextQuestion" TargetType="{x:Type Button}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0 0 0 20"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0 0 30 10"/>
             <Setter Property="Width" Value="180"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="BorderBrush" Value="#000"/>
             <Setter Property="Background" Value="#682E2E"/>
             <Setter Property="BorderThickness" Value="1.5"/>
             <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Content" Value="Розпочати тестування"/>
+            <Setter Property="Content" Value="Наступне питання"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -100,7 +100,7 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Width" Value="178"/>
                                 <Setter Property="Height" Value="42"/>
-                                <Setter Property="Margin" Value="1 1 1 19"/>
+                                <Setter Property="Margin" Value="1 1 28 9"/>
                             </Trigger>
 
                             <DataTrigger Binding="{Binding ElementName=ButtonBorder, Path=IsMouseOver}" Value="True">
@@ -124,7 +124,6 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="#FFF5FF8E"/>
             <Setter Property="Orientation" Value="Vertical"/>
-            <Setter Property="Value" Value="59"/>
         </Style>
 
         <Style x:Key="ProgressBarBorder" TargetType="{x:Type Border}">
@@ -156,6 +155,39 @@
             <Setter Property="Height" Value="{Binding ElementName=Question, Path=Height}"/>
         </Style>
 
+        <Style x:Key="AnswerSection" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="20 20 20 0"/>
+            <Setter Property="Background" Value="#FFC8DFFF"/>
+        </Style>
+
+        <Style x:Key="AnswerBorder" TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="MinHeight" Value="60"/>
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="Padding" Value="10 5 5 5"/>
+            <Setter Property="Margin" Value="0 15"/>
+            <Setter Property="Background" Value="#FFF5FF8E"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Width" Value="390"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="AnswerRadioButton" TargetType="{x:Type RadioButton}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="GroupName" Value="Answer"/>
+        </Style>
+
+        <Style x:Key="AnswerText" TargetType="{x:Type TextBlock}">
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Text" Value="asdasdkas sakdjsdas asjdaljdhsa askjdhaksjdha askdjhakjsdha askjdha ahdsakdhasg ashdgasjkhd asjhdg asjdshakjdh askjdh kaljshd askjdh askjdh"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="10 5 5 5"/>
+        </Style>
+
 
     </Window.Resources>
 
@@ -181,17 +213,40 @@
             </Grid>
 
             <Grid Grid.Row="1" Background="#FF5F9FE8">
+                
                 <Grid x:Name="LogoGrid" Style="{StaticResource LogoGrid}">
                     <Image x:Name="Logo" Style="{StaticResource Logo}"/>
                 </Grid>
-
+                
                 <Grid x:Name="QuizGrid" Style="{StaticResource QuizGrid}">
                     <Border x:Name="QuizBorder" Style="{StaticResource QuizBorder}"/>
 
-                    <Border x:Name="QuestionBorder" Style="{StaticResource QuestionBorder}">
-                        <TextBlock x:Name="Question" Style="{StaticResource Question}"/>
-                    </Border>
+                    <StackPanel x:Name="QuestionSection">
+                        <Border x:Name="QuestionBorder" Style="{StaticResource QuestionBorder}">
+                            <TextBlock x:Name="Question" Style="{StaticResource Question}"/>
+                        </Border>
+                        
+                        <StackPanel x:Name="AnswerSection" Style="{StaticResource AnswerSection}">
+                            <Border BorderThickness="1" BorderBrush="#000">
+                                <Grid MaxHeight="300" MinHeight="300" Background="Transparent">
+                                    <ScrollViewer Background="Transparent">
+                                        <StackPanel x:Name="AnswerPanel">
+                                            <Border x:Name="AnswerBorder" Style="{StaticResource AnswerBorder}">
+                                                <RadioButton x:Name="Answer" Style="{StaticResource AnswerRadioButton}" Checked="Answer_Checked" >
+                                                    <TextBlock x:Name="AnswerText" Style="{StaticResource AnswerText}"/>
+                                                </RadioButton>
+                                            </Border>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Border>
 
+
+                        </StackPanel>
+
+                    
+                    </StackPanel>
+                    <Button x:Name="NextQuestion" Style="{StaticResource NextQuestion}" Click="NextQuestion_Click" />
                 </Grid>
                 
                 <Border x:Name="ProgressBarBorder" Style="{StaticResource ProgressBarBorder}"> 

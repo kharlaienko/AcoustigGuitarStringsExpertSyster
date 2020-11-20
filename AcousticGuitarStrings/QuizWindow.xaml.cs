@@ -41,5 +41,28 @@ namespace AcousticGuitarStrings
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void NextQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            this.ProgressBar.Value += 10;
+
+            
+            if (this.ProgressBar.Value == 100)
+            {
+                this.NextQuestion.Content = "Результаты";
+                this.NextQuestion.Click += Results;
+            }
+        }
+
+        private void Results(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("123123");
+        }
+
+        private void Answer_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton radioButton = (RadioButton)sender;
+            MessageBox.Show(radioButton.Name.ToString());
+        }
     }
 }
