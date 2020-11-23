@@ -228,7 +228,7 @@
                         
                         <StackPanel x:Name="AnswerSection" Style="{StaticResource AnswerSection}">
                             <Border BorderThickness="1" BorderBrush="#000">
-                                <Grid MaxHeight="300" MinHeight="300" Background="Transparent">
+                                <Grid MaxHeight="250" MinHeight="250" Background="Transparent">
                                     <ScrollViewer Background="Transparent">
                                         <StackPanel x:Name="AnswerPanel">
                                             <Border x:Name="AnswerBorder" Style="{StaticResource AnswerBorder}">

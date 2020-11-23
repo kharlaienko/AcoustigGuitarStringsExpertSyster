@@ -19,9 +19,20 @@ namespace AcousticGuitarStrings
     /// </summary>
     public partial class QuizWindow : Window
     {
+        ApplicationContext db;
+
+        Quiz quiz = new Quiz();
+
+        int currentQuiz = 0;
+
         public QuizWindow()
         {
             InitializeComponent();
+
+            db = new ApplicationContext();
+
+            AddQuiz();
+            
         }
 
         private void ToolBar_MouseDown(object sender, MouseButtonEventArgs e)
@@ -44,25 +55,45 @@ namespace AcousticGuitarStrings
 
         private void NextQuestion_Click(object sender, RoutedEventArgs e)
         {
-            this.ProgressBar.Value += 10;
+            this.ProgressBar.Value += 100 / quiz.QuestionAnswers.Count;
+            AddQuiz();
 
-            
-            if (this.ProgressBar.Value == 100)
+            if (this.ProgressBar.Value >= 100)
             {
-                this.NextQuestion.Content = "Результаты";
                 this.NextQuestion.Click += Results;
+                this.NextQuestion.Content = "Результаты";
             }
         }
 
         private void Results(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("123123");
+            MessageBox.Show($"succes");
         }
 
         private void Answer_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton radioButton = (RadioButton)sender;
-            MessageBox.Show(radioButton.Name.ToString());
+
+        }
+
+        private void AddQuiz()
+        {
+            if (currentQuiz <= quiz.QuestionAnswers.Count - 1)
+                {
+
+                TextBlock question = new TextBlock();
+
+                question.Name = "Question";
+                question.Style = this.FindResource("Question") as Style;
+
+                foreach (var item in quiz.QuestionAnswers[currentQuiz])
+                {
+                    question.Text = item.Key;
+                    this.QuestionBorder.Child = question;
+                }
+            }
+
+            currentQuiz += 1;
         }
     }
 }
