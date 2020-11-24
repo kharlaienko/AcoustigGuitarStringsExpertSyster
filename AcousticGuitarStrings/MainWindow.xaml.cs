@@ -23,6 +23,7 @@ namespace AcousticGuitarStrings
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void ToolBar_MouseDown(object sender, MouseButtonEventArgs e)

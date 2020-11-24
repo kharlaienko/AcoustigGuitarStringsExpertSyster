@@ -16,6 +16,8 @@ namespace AcousticGuitarStrings
 
         private Answer[] answers = db.Answers.ToArray<Answer>();
 
+        public GuitarString[] guitarStrings = db.GuitarStrings.ToArray<GuitarString>();
+
         public List<Dictionary<string, Dictionary<string, int>>> QuestionAnswers = new List<Dictionary<string, Dictionary<string, int>>>();
 
         public Quiz() { MakeQuiz(); }
@@ -70,6 +72,30 @@ namespace AcousticGuitarStrings
         
         public int weight { get; set; }
         public Answer() { }
+
+    }
+
+    class GuitarString
+    {
+        public int id { get; set; }
+
+        public string name { get; set; }
+
+        public decimal price { get; set; }
+
+        public string buyUrl { get; set; }
+        
+        public string manufacturer { get; set; }
+        
+        public string material { get; set; }
+        
+        public int firstStringSize { get; set; }
+        
+        public int sixthStringSize { get; set; }
+        
+        public string imageTitle { get; set; }
+        
+        public GuitarString() { }
 
     }
 }

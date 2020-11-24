@@ -25,9 +25,9 @@ namespace AcousticGuitarStrings
 
         int currentQuiz = 0;
 
-        int currentAnswer = 0;
+        int currentAnswer;
 
-        int totalAnswerWeight = 0;
+        int totalAnswerWeight;
 
         public QuizWindow()
         {
@@ -76,7 +76,14 @@ namespace AcousticGuitarStrings
 
         private void Results(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"succes");
+            MessageBox.Show($"{totalAnswerWeight}");
+            StringsWindow stringsWindow = new StringsWindow();
+            stringsWindow.totalAnswerWeight = totalAnswerWeight;
+
+            stringsWindow.Show();
+
+
+            this.Close();
         }
 
         private void Answer_Checked(object sender, RoutedEventArgs e)
@@ -89,7 +96,7 @@ namespace AcousticGuitarStrings
         private void AddQuiz()
         {
             if (currentQuiz <= quiz.QuestionAnswers.Count - 1)
-                {
+            {
 
                 TextBlock question = new TextBlock();
 

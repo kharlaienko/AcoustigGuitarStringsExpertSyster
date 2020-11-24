@@ -79,6 +79,9 @@
     <Compile Include="QuizWindow.xaml.cs">
       <DependentUpon>QuizWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StringsWindow.xaml.cs">
+      <DependentUpon>StringsWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,6 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="QuizWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StringsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,6 +148,51 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Strings\123.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Strings\image_0.jpg" />
+    <Resource Include="Images\Strings\image_1.jpg" />
+    <Resource Include="Images\Strings\image_10.jpg" />
+    <Resource Include="Images\Strings\image_11.jpg" />
+    <Resource Include="Images\Strings\image_12.jpg" />
+    <Resource Include="Images\Strings\image_13.jpg" />
+    <Resource Include="Images\Strings\image_14.jpg" />
+    <Resource Include="Images\Strings\image_15.jpg" />
+    <Resource Include="Images\Strings\image_16.jpg" />
+    <Resource Include="Images\Strings\image_17.jpg" />
+    <Resource Include="Images\Strings\image_18.jpg" />
+    <Resource Include="Images\Strings\image_19.jpg" />
+    <Resource Include="Images\Strings\image_2.jpg" />
+    <Resource Include="Images\Strings\image_20.jpg" />
+    <Resource Include="Images\Strings\image_21.jpg" />
+    <Resource Include="Images\Strings\image_22.jpg" />
+    <Resource Include="Images\Strings\image_23.jpg" />
+    <Resource Include="Images\Strings\image_24.jpg" />
+    <Resource Include="Images\Strings\image_25.jpg" />
+    <Resource Include="Images\Strings\image_26.jpg" />
+    <Resource Include="Images\Strings\image_27.jpg" />
+    <Resource Include="Images\Strings\image_28.jpg" />
+    <Resource Include="Images\Strings\image_29.jpg" />
+    <Resource Include="Images\Strings\image_3.jpg" />
+    <Resource Include="Images\Strings\image_30.jpg" />
+    <Resource Include="Images\Strings\image_31.jpg" />
+    <Resource Include="Images\Strings\image_32.jpg" />
+    <Resource Include="Images\Strings\image_33.jpg" />
+    <Resource Include="Images\Strings\image_34.jpg" />
+    <Resource Include="Images\Strings\image_35.jpg" />
+    <Resource Include="Images\Strings\image_36.jpg" />
+    <Resource Include="Images\Strings\image_37.jpg" />
+    <Resource Include="Images\Strings\image_38.jpg" />
+    <Resource Include="Images\Strings\image_39.jpg" />
+    <Resource Include="Images\Strings\image_4.jpg" />
+    <Resource Include="Images\Strings\image_5.jpg" />
+    <Resource Include="Images\Strings\image_6.jpg" />
+    <Resource Include="Images\Strings\image_7.jpg" />
+    <Resource Include="Images\Strings\image_8.jpg" />
+    <Resource Include="Images\Strings\image_9.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

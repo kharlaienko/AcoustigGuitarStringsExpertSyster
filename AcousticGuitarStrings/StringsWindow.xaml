@@ -1,0 +1,234 @@
+﻿<Window x:Class="AcousticGuitarStrings.StringsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AcousticGuitarStrings"
+        mc:Ignorable="d"
+Title="MainWindow" Height="550" Width="650" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Icon="Images/icon.ico">
+
+    <Window.Resources>
+        <Style x:Key="ToolBar" TargetType="{x:Type Grid}">
+            <Setter Property="Background" Value="#FF5F9FE8"/>
+        </Style>
+
+        <Style x:Key="ToolBarBorder" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1.5"/>
+            <Setter Property="BorderBrush" Value="#000"/>
+        </Style>
+
+        <Style x:Key="CloseImage" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Images/CrossButton.png"/>
+            <Setter Property="Height" Value="20"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=ButtonClose, Path=IsMouseOver}" Value="True">
+                    <Setter Property="Source" Value="Images/CrossButtonHover.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MinimazeImage" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Images/MinimazeButton.png"/>
+            <Setter Property="Height" Value="3"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=ButtonMinimaze, Path=IsMouseOver}" Value="True">
+                    <Setter Property="Source" Value="Images/MinimazeButtonHover.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ToolBarButton" TargetType="{x:Type Grid}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Margin" Value="5 0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF8DC1FD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="StringsBorder" TargetType="{x:Type Border}">
+            <Setter Property="Height" Value="420"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#FFABCFFF"/>
+        </Style>
+
+        <Style x:Key="Logo" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Images/logo.png"/>
+        </Style>
+
+        <Style x:Key="LogoGrid" TargetType="{x:Type Grid}">
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="15 -30 0 0"/>
+        </Style>
+
+        <Style x:Key="BuyButton" TargetType="{x:Type Button}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 0 5"/>
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="Background" Value="#682E2E"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Content" Value="Детальніше"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder" BorderBrush="{TemplateBinding Property=BorderBrush}"
+                                BorderThickness="{TemplateBinding Property=BorderThickness}"
+                                CornerRadius="10" Background="{TemplateBinding Background}">
+                            <TextBlock Text="{TemplateBinding Property=Content}" VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" Foreground="#CDDEF5" FontSize="{TemplateBinding FontSize}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Width" Value="112"/>
+                                <Setter Property="Height" Value="29"/>
+                                <Setter Property="Margin" Value="1 0 1 4"/>
+                            </Trigger>
+
+                            <DataTrigger Binding="{Binding ElementName=ButtonBorder, Path=IsMouseOver}" Value="True">
+                                <Setter Property="FontSize" Value="14"/>
+                            </DataTrigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF4D1F1F"/>
+                                <Setter Property="BorderThickness" Value="3.5 3.5 3.5 3.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StringInfoBorder" TargetType="{x:Type Border}">
+            <Setter Property="Height" Value="180"/>
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+        </Style>
+
+        <Style x:Key="ImageBorder" TargetType="{x:Type Border}"
+               BasedOn="{StaticResource StringInfoBorder}">
+            
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="10 10 0 0"/>
+        </Style>
+        
+        <Style x:Key="InfoBorder" TargetType="{x:Type Border}"
+               BasedOn="{StaticResource StringInfoBorder}">
+ 
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0 10 10 0"/>
+            <Setter Property="Width" Value="210"/>
+            <Setter Property="Background" Value="#FFC0D2EA"/>
+        </Style>
+
+        <Style x:Key="TextGeneral" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Margin" Value="0 5"/>
+        </Style>
+
+        <Style x:Key="Title" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource TextGeneral}">
+
+            <Setter Property="Text" Value="Назва: "/>
+        </Style>
+        
+        <Style x:Key="Manufacturer" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource TextGeneral}">
+
+            <Setter Property="Text" Value="Виробник: "/>
+        </Style>
+        
+        <Style x:Key="Material" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource TextGeneral}">
+
+            <Setter Property="Text" Value="Матеріал: "/>
+        </Style>
+        
+        <Style x:Key="StringSize" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource TextGeneral}">
+
+            <Setter Property="Text" Value="Калібр струн: "/>
+        </Style>
+        
+        <Style x:Key="Price" TargetType="{x:Type TextBlock}"
+               BasedOn="{StaticResource TextGeneral}">
+
+            <Setter Property="Text" Value="Ціна: "/>
+        </Style>
+
+        <Style x:Key="BoderInfo" TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        </Style>
+
+        <Style x:Key="ItemBorder" TargetType="{x:Type Border}">
+            <Setter Property="BorderBrush" Value="#000"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="10 20"/>
+            <Setter Property="Background" Value="#FFF5FF8E"/>
+        </Style>
+
+        <Style x:Key="StringsInfoPannel" TargetType="{x:Type Grid}">
+            <Setter Property="Height" Value="230"/>
+        </Style>
+
+        <Style x:Key="Scroll" TargetType="{x:Type ScrollViewer}">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        
+        
+    </Window.Resources>
+
+    <Border BorderBrush="#FF0F0D0D" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="530*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="ToolBar" Grid.Row="0" Style="{StaticResource ToolBar}" MouseDown="ToolBar_MouseDown">
+                <Border x:Name="ToolBarBorder" Style="{StaticResource ToolBarBorder}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Grid x:Name="ButtonMinimaze" Style="{StaticResource ToolBarButton}" MouseDown="ButtonMinimaze_MouseDown">
+                            <Image x:Name="MinimazeImage" Style="{StaticResource MinimazeImage}"/>
+                        </Grid>
+
+                        <Grid x:Name="ButtonClose" Style="{StaticResource ToolBarButton}" MouseDown="ButtonClose_MouseDown">
+                            <Image x:Name="CloseImage" Style="{StaticResource CloseImage}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="#FF5F9FE8">
+                <Grid x:Name="LogoGrid" Style="{StaticResource LogoGrid}">
+                    <Image x:Name="Logo" Style="{StaticResource Logo}"/>
+                </Grid>
+                <Border x:Name="StringsBorder" Style="{StaticResource StringsBorder}">
+                    <ScrollViewer Style="{StaticResource Scroll}">
+                        <StackPanel x:Name="StringsPanel">
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+
+        </Grid>
+    </Border>
+</Window>

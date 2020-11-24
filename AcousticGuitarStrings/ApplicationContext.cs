@@ -12,7 +12,7 @@ namespace AcousticGuitarStrings
     {
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
-
+        public DbSet<GuitarString> GuitarStrings { get; set; }
         public ApplicationContext() : base("DefaultConnection") { }
     }
 }
