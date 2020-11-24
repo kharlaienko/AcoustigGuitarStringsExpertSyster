@@ -232,7 +232,7 @@
                                     <ScrollViewer Background="Transparent">
                                         <StackPanel x:Name="AnswerPanel">
                                             <Border x:Name="AnswerBorder" Style="{StaticResource AnswerBorder}">
-                                                <RadioButton x:Name="Answer" Style="{StaticResource AnswerRadioButton}" Checked="Answer_Checked" >
+                                                <RadioButton x:Name="Answer_1" IsChecked="True" Style="{StaticResource AnswerRadioButton}" Checked="Answer_Checked" >
                                                     <TextBlock x:Name="AnswerText" Style="{StaticResource AnswerText}"/>
                                                 </RadioButton>
                                             </Border>

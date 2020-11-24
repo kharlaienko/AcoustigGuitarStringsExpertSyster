@@ -25,6 +25,10 @@ namespace AcousticGuitarStrings
 
         int currentQuiz = 0;
 
+        int currentAnswer = 0;
+
+        int totalAnswerWeight = 0;
+
         public QuizWindow()
         {
             InitializeComponent();
@@ -58,10 +62,15 @@ namespace AcousticGuitarStrings
             this.ProgressBar.Value += 100 / quiz.QuestionAnswers.Count;
             AddQuiz();
 
+
             if (this.ProgressBar.Value >= 100)
             {
                 this.NextQuestion.Click += Results;
-                this.NextQuestion.Content = "Результаты";
+                this.NextQuestion.Content = "Результати";
+            }
+            else
+            {
+                totalAnswerWeight += currentAnswer;
             }
         }
 
@@ -74,6 +83,7 @@ namespace AcousticGuitarStrings
         {
             RadioButton radioButton = (RadioButton)sender;
 
+            currentAnswer = Convert.ToInt32(radioButton.Name.Last().ToString());
         }
 
         private void AddQuiz()
@@ -90,10 +100,38 @@ namespace AcousticGuitarStrings
                 {
                     question.Text = item.Key;
                     this.QuestionBorder.Child = question;
+
+                    this.AnswerPanel.Children.Clear();
+
+                    foreach (var answer in item.Value)
+                    {
+                        AddAnswer(answer);
+                    }
                 }
             }
 
             currentQuiz += 1;
+        }
+
+        private void AddAnswer(KeyValuePair<string, int> answer)
+        {
+            Border answerBorder = new Border();
+            answerBorder.Style = this.FindResource("AnswerBorder") as Style;
+
+            RadioButton answerRadioButton = new RadioButton();
+            answerRadioButton.Name += $"AnswerWeight_{answer.Value.ToString()}";
+            answerRadioButton.Style = this.FindResource("AnswerRadioButton") as Style;
+            answerRadioButton.Checked += Answer_Checked;
+
+            TextBlock answerText = new TextBlock();
+            answerText.Text = answer.Key;
+            answerText.Style = this.FindResource("AnswerText") as Style;
+
+            answerRadioButton.Content = answerText;
+
+            answerBorder.Child = answerRadioButton;
+
+            this.AnswerPanel.Children.Add(answerBorder);
         }
     }
 }
