@@ -24,20 +24,53 @@ namespace AcousticGuitarStrings
 
         Quiz quiz = new Quiz();
 
-        public int totalAnswerWeight;
+        private int totalAnswerPoints { get; set; }
+
         public StringsWindow()
+        {
+
+        }
+        public StringsWindow(int totalAnswerPoints)
         {
             InitializeComponent();
 
             db = new ApplicationContext();
 
-            MessageBox.Show($"{totalAnswerWeight}");
+            this.totalAnswerPoints = totalAnswerPoints;
 
-            foreach (var item in quiz.guitarStrings)
+            if (totalAnswerPoints == 1)
+            {
+                var selectecGuitarStrings = from t in quiz.guitarStrings where t.firstStringSize < 12 && t.material.ToUpper().StartsWith("Б") select t;
+
+                AddSelectedStrings(selectecGuitarStrings);
+            }
+            else if (totalAnswerPoints == 2)
+            {
+                var selectecGuitarStrings = from t in quiz.guitarStrings where t.firstStringSize >= 12 && t.material.ToUpper().StartsWith("Б") select t;
+
+                AddSelectedStrings(selectecGuitarStrings);
+            }
+            else if (totalAnswerPoints == 3)
+            {
+                var selectecGuitarStrings = from t in quiz.guitarStrings where t.firstStringSize < 12 && t.material.ToUpper().StartsWith("Ф") select t;
+                
+                AddSelectedStrings(selectecGuitarStrings);
+            }
+            else if (totalAnswerPoints == 4)
+            {
+                var selectecGuitarStrings = from t in quiz.guitarStrings where t.firstStringSize >= 12 && t.material.ToUpper().StartsWith("Ф") select t;
+
+                AddSelectedStrings(selectecGuitarStrings);
+            }
+
+        }
+
+        private void AddSelectedStrings(IEnumerable<GuitarString> selectecGuitarStrings)
+        {
+            foreach (var item in selectecGuitarStrings)
             {
                 AddString(item);
             }
-
         }
 
         private void ToolBar_MouseDown(object sender, MouseButtonEventArgs e)

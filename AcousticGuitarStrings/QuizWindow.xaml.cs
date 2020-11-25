@@ -23,11 +23,11 @@ namespace AcousticGuitarStrings
 
         Quiz quiz = new Quiz();
 
-        int currentQuiz = 0;
+        static int currentQuiz = 0;
 
-        int currentAnswer;
+        static int currentAnswer;
 
-        int totalAnswerWeight;
+        public int totalAnswer { get; set; }
 
         public QuizWindow()
         {
@@ -62,26 +62,21 @@ namespace AcousticGuitarStrings
             this.ProgressBar.Value += 100 / quiz.QuestionAnswers.Count;
             AddQuiz();
 
+            totalAnswer += currentAnswer;
+            currentAnswer = 0;
 
             if (this.ProgressBar.Value >= 100)
             {
                 this.NextQuestion.Click += Results;
                 this.NextQuestion.Content = "Результати";
             }
-            else
-            {
-                totalAnswerWeight += currentAnswer;
-            }
         }
 
         private void Results(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"{totalAnswerWeight}");
-            StringsWindow stringsWindow = new StringsWindow();
-            stringsWindow.totalAnswerWeight = totalAnswerWeight;
+            StringsWindow stringsWindow = new StringsWindow(totalAnswer);
 
             stringsWindow.Show();
-
 
             this.Close();
         }
@@ -91,6 +86,7 @@ namespace AcousticGuitarStrings
             RadioButton radioButton = (RadioButton)sender;
 
             currentAnswer = Convert.ToInt32(radioButton.Name.Last().ToString());
+
         }
 
         private void AddQuiz()
