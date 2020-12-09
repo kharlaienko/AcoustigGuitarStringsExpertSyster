@@ -42,11 +42,15 @@ namespace AcousticGuitarStrings
             {
                 var selectecGuitarStrings = from t in quiz.guitarStrings where t.firstStringSize < 12 && t.material.ToUpper().StartsWith("Б") select t;
 
+                MessageBox.Show("Вам підійдуть більш тонкі струни, так як пальці не звикли до гри на гітарі. Матеріал: Бронзовий, по звучанню він підходить вам більше");
+
                 AddSelectedStrings(selectecGuitarStrings);
             }
             else if (totalAnswerPoints == 2)
             {
                 var selectecGuitarStrings = from t in quiz.guitarStrings where t.firstStringSize >= 12 && t.material.ToUpper().StartsWith("Б") select t;
+
+                MessageBox.Show("Вам підійдуть струни будь-якого розміру, але краще брати середні та вище, в них звук більш кращий. Матеріал: Бронзовий, по звучанню він підходить вам більше");
 
                 AddSelectedStrings(selectecGuitarStrings);
             }
@@ -55,10 +59,14 @@ namespace AcousticGuitarStrings
                 var selectecGuitarStrings = from t in quiz.guitarStrings where t.firstStringSize < 12 && t.material.ToUpper().StartsWith("Ф") select t;
                 
                 AddSelectedStrings(selectecGuitarStrings);
+
+                MessageBox.Show("Вам підійдуть більш тонкі струни, так як пальці не звикли до гри на гітарі. Матеріал: Фосфорна бронза, по звучанню він підходить вам більше");
             }
             else if (totalAnswerPoints == 4)
             {
                 var selectecGuitarStrings = from t in quiz.guitarStrings where t.firstStringSize >= 12 && t.material.ToUpper().StartsWith("Ф") select t;
+
+                MessageBox.Show("Вам підійдуть струни будь-якого розміру, але краще брати середні та вище, в них звук більш кращий. Матеріал: Фосфорна бронза, по звучанню він підходить вам більше");
 
                 AddSelectedStrings(selectecGuitarStrings);
             }
